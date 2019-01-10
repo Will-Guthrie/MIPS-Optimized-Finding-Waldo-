@@ -1,8 +1,6 @@
 # GUTHRIE
 # William
-# 260672173
-# Q1. Yes they do as mod 8 they are both 0x0, adding 0x40 space fixes this issue and brings the cache hit rate up to 95% from 75%.
-# Q2. Yes it does, empirically I exeperienced a speed up by changing their locations in memory. 
+
 .data
 displayBuffer:  .space 0x40000 # space for 512x256 bitmap display 
 space: .space 0x40
@@ -11,8 +9,8 @@ templateBuffer: .space 0x100   # space for 8x8 template
 imageFileName:    .asciiz "pxlcon512x256cropgs.raw" 
 templateFileName: .asciiz "template8x8gs.raw"
 # struct bufferInfo { int *buffer, int width, int height, char* filename }
-imageBufferInfo:    .word displayBuffer  512 16  imageFileName
-errorBufferInfo:    .word errorBuffer    512 16  0
+imageBufferInfo:    .word displayBuffer  512 128  imageFileName
+errorBufferInfo:    .word errorBuffer    512 128  0
 templateBufferInfo: .word templateBuffer 8   8    templateFileName
 
 .text
